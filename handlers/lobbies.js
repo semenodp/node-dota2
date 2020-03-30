@@ -643,3 +643,13 @@ var onInviteCreated = function onInviteCreated(message) {
 }
 handlers[Dota2.schema.EGCBaseMsg.k_EMsgGCInvitationCreated] = onInviteCreated;
 
+var onEndOfMatch = function onEndOfMatch(message) {
+    this.Logger.debug("Received end of match notifications")
+    var data = Dota2.schema.CMsgGenericResult.decode(message)
+    this.emit('endOfMatch', data)
+}
+
+handlers[Dota2.schema.EDOTAGCMsg.k_EMsgGCToClientMatchSignedOut] = onEndOfMatch
+
+
+
